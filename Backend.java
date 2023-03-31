@@ -9,8 +9,8 @@ public class Backend implements BackendInterface {
     private MovieReaderInterface reader;
     
     public Backend() {
-        reader = new MovieReaderPlaceholderBD();
-        RBT = new MovieRedBlackTreePlaceholderBD();
+        reader = new MovieReader();
+        RBT = new MovieRedBlackTree();
     }
     
     // todo is it frontend or backend's job to make sure loadData isn't called twice?
