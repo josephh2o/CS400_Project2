@@ -37,11 +37,8 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                 case 'T' -> {
                     System.out.println("Enter a keyword(s) to search by: ");
                     String titleInput = input.nextLine();
-                    String[] titleWords = titleInput.split(" ");
                     List<String> title = new ArrayList<>();
-                    for (String word : titleWords) { // Add each word to a list
-                        title.add(word);
-                    }
+                    title.add(titleInput);
                     searchTitleCommand(title);
                 }
                 case 'Y' -> {
