@@ -1,6 +1,4 @@
-import java.util.Arrays;
-
-public class MovieRedBlackTreeAE extends RedBlackTree implements MovieRedBlackTreeInterface {
+public class MovieRedBlackTree extends RedBlackTree implements MovieRedBlackTreeInterface {
     private RedBlackTree<RBTList<Integer>> yearRBT = new RedBlackTree<>();
     private RedBlackTree<RBTList<String>> titleRBT = new RedBlackTree<>();
     private RedBlackTree<RBTList<Integer>> popularityRBT = new RedBlackTree<>();

@@ -13,7 +13,7 @@ import java.lang.Character;
  * a.csv file
  * @author Cameron
  */
-public class MovieReaderDW implements MovieReaderInterface {  
+public class MovieReader implements MovieReaderInterface {
   
   /**
    * Reads movie data from a csv file given by filename.
