@@ -4,3 +4,6 @@ List any changes that should be made to get stuff working:
 	(instead, just return empty lists)
 - for frontend:
 	- when returning search results, have all information for the movies display on console
+- backend or algo
+    - there are duplicates so the current technique of having each movie be it's own list isn't working
+    but also, what if we just deleted the duplicates?
