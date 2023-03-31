@@ -140,7 +140,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
         System.out.println("Enter the name of the file to load: ");
         String filename = input.nextLine().trim();
         try {
-            backend.loadData();
+            backend.loadData(filename);
         } catch (Exception e) {
             System.out.println("Error loading file: " + e.getMessage());
         }
