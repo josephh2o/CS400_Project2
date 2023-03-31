@@ -15,7 +15,7 @@ public class Backend implements BackendInterface {
     
     // todo is it frontend or backend's job to make sure loadData isn't called twice?
     // O(NlogN)
-    public boolean loadData() {
+    public boolean loadData() { // change to include argument in method
         List<MovieInterface> dataList;
         try {
             dataList = reader.readMovieData("GOOD_DATA.csv");

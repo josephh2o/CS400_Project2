@@ -9,19 +9,15 @@ public class MovieSearchApp implements MovieSearchAppInterface {
 
     private Scanner input; // For user input
     private BackendInterface backend; // For accessing the backend
-    private MovieReaderInterface movieReader; // For reading in movie data
 
     /**
      * Constructor for the MovieSearchApp class.
      * @param input Scanner for user input
      * @param backend BackendInterface for accessing the backend
-     * @param movieReader MovieReaderInterface for reading in movie data
      */
-    public MovieSearchApp (Scanner input, BackendInterface backend,
-                           MovieReaderInterface movieReader) {
+    public MovieSearchApp (Scanner input, BackendInterface backend) {
         this.input = input;
         this.backend = backend;
-        this.movieReader = movieReader;
     }
 
     /**
@@ -144,9 +140,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
         System.out.println("Enter the name of the file to load: ");
         String filename = input.nextLine().trim();
         try {
-            List<MovieInterface> movies = movieReader.readMovieData(filename);
-            backend.loadData(movies);
-            System.out.println("Loaded " + movies.size() + " movies from " + filename + ".");
+            backend.loadData();
         } catch (Exception e) {
             System.out.println("Error loading file: " + e.getMessage());
         }
