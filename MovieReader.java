@@ -204,7 +204,7 @@ public class MovieReader implements MovieReaderInterface {
 		int popularity = Integer.parseInt( paramList.get(7).isBlank() ? "0" : paramList.get(7));
 		boolean wonAwards = paramList.get(8).equals("Yes");
 
-		return new MovieDW( year, title, runtime, category, leadActor, leadActress, 
+		return new Movie( year, title, runtime, category, leadActor, leadActress, 
 				director, popularity, wonAwards);
 	}
   

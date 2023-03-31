@@ -9,7 +9,7 @@
  * popularity (from 0 to 100), and if it has won any awards
  * @author Cameron
  */
-public class MovieDW implements MovieInterface {
+public class Movie implements MovieInterface {
   private int year;
   private String title;
   private int runtime;
@@ -23,7 +23,7 @@ public class MovieDW implements MovieInterface {
  /**
   * default constructor; initializes fields to 0-like
   */ 
-  public MovieDW() {
+  public Movie() {
     this(0, "", 0, "", "", "", "", 0, false);
   }
   
@@ -39,7 +39,7 @@ public class MovieDW implements MovieInterface {
    * @param popularity	- int from 0 to 100 describing how popular the movie is
    * @param wonAwards	- true if the movie has won awards; false if not
    */
-  public MovieDW(int year, String title, int runtime, String category, String leadActor, 
+  public Movie(int year, String title, int runtime, String category, String leadActor, 
       String leadActress, String director, int popularity, boolean wonAwards) {
     
     this.year = year;
