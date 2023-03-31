@@ -1,3 +1,5 @@
+import unused.MovieAE; // Change to Movie.java
+
 public interface MovieInterface {
     // public Movie(int year, String title, int runtime, String category, String leadActor, String leadActress, String director, int popularity, boolean wonAwards)
 

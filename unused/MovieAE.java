@@ -1,10 +1,12 @@
+package unused;
+
 public class MovieAE implements MovieInterface {
     int year;
     String title;
     int popularity;
     public MovieAE(int year, String title, int runtime, String category, String
             leadActor, String leadActress, String director, int popularity,
-            boolean wonAwards) {}
+                   boolean wonAwards) {}
 
     // Not going to be in the final implementation just assigning what I need
     // need for tests
