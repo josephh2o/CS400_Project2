@@ -18,7 +18,7 @@ public class Backend implements BackendInterface {
     public boolean loadData(String filename) { // change to include argument in method
         List<MovieInterface> dataList;
         try {
-            dataList = reader.readMovieData("GOOD_DATA.csv");
+            dataList = reader.readMovieData(filename);
         }
         catch (FileNotFoundException e){
             return false;
