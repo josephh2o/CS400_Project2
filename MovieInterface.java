@@ -1,8 +1,15 @@
-import unused.MovieAE; // Change to Movie.java
-
+/**
+ * This interface provides a way to access data
+ * related to a movie, including: title, release year, 
+ * runtime (in minutes), category, lead actor, lead actress, director,
+ * popularity (from 0 to 100), and if it has won any awards
+ * @author Cameron
+ */
 public interface MovieInterface {
     // public Movie(int year, String title, int runtime, String category, String leadActor, String leadActress, String director, int popularity, boolean wonAwards)
 
+
+	// accessors
     public int getYear();
     public String getTitle();
     public int getRuntime(); // in minutes
@@ -13,7 +20,4 @@ public interface MovieInterface {
     public int getPopularity();
     public boolean wonAwards();
 
-    public int compareToYear(MovieAE movie2);
-    public int compareToTitle(MovieAE movie2);
-    public int compareToPopularity(MovieAE movie2);
 }
