@@ -136,10 +136,11 @@ public class MovieSearchApp implements MovieSearchAppInterface {
     public void loadData() {
         System.out.println("Enter the name of the file to load: ");
         String filename = input.nextLine().trim();
-        try {
-            backend.loadData(filename);
-        } catch (Exception e) {
-            System.out.println("Error loading file: " + e.getMessage());
+        if (backend.loadData(filename)) {
+            System.out.println("Data loaded successfully.");
+        }
+        else {
+            System.out.println("Error loading file.");
         }
     }
 
@@ -149,6 +150,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
      */
     @Override
     public void searchTitleCommand(List<String> title) {
+        backend.getMoviesByTitle(title.get(0));
         while (title.size() > 0) {
             List<MovieInterface> movies = backend.getMoviesByTitle(title.get(0));
             if (movies.size() == 0) { // No movies found
