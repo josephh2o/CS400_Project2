@@ -1,7 +1,7 @@
 import java.util.List;
 
 public interface BackendInterface {
-    
+    boolean loadData(String filename);
     List<MovieInterface> getMoviesByTitle(String title);
     List<MovieInterface> getMoviesByPopularity(int popularity);
     List<MovieInterface> getMoviesByYear(int year);
