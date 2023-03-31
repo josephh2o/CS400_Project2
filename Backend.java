@@ -25,7 +25,7 @@ public class Backend implements BackendInterface {
         }
         
         // load years
-        RBTList<Integer>[] yearMap = new RBTList[78]; // first index is 1920, last might be 1997
+        RBTList<Integer>[] yearMap = new RBTList[80]; // first index is 1920, last might be 1997
         int index;
         for (MovieInterface movie: dataList) {
             index = movie.getYear()-1920;
