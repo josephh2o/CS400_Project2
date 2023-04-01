@@ -10,9 +10,9 @@ public class runProgram {
      * @param args if any
      */
     public static void main(String[] args) {
-        BackendInterface backend5 = new Backend();
-        Scanner input5 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input5, backend5);
+        BackendInterface backend = new Backend();
+        Scanner input = new Scanner(System.in);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
     }
 }
