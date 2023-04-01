@@ -36,7 +36,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                     loadData();
                 }
                 case 'T' -> {
-                    if (!loadedData) {
+                    if (!loadedData) { // if data has not been loaded
                         System.out.println("Please load data first.");
                         break;
                     }
@@ -47,7 +47,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                     searchTitleCommand(title);
                 }
                 case 'Y' -> {
-                    if (!loadedData) {
+                    if (!loadedData) { // if data has not been loaded
                         System.out.println("Please load data first.");
                         break;
                     }
@@ -80,7 +80,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                     }
                 }
                 case 'P' -> {
-                    if (!loadedData) {
+                    if (!loadedData) { // if data has not been loaded
                         System.out.println("Please load data first.");
                         break;
                     }

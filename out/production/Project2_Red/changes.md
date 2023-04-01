@@ -8,10 +8,10 @@
 
 ### Frontend ###
 
-- [ ] when returning search results, have all information for the movies display on console
-- [ ] we should address situations where the user calls functions before the data loads
+- [x] when returning search results, have all information for the movies display on console
+- [x] we should address situations where the user calls functions before the data loads
 
 ### Backend or Algo ###
 
-- [ ] there are duplicates so the current technique of having each movie be it's own list isn't working
+- [ ] there are duplicates so the current technique of having each movie be its own list isn't working
 but also, what if we just deleted the duplicates?
