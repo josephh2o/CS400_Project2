@@ -9,6 +9,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
 
     private Scanner input; // For user input
     private BackendInterface backend; // For accessing the backend
+    private boolean loadedData = false;
 
     /**
      * Constructor for the MovieSearchApp class.
@@ -27,16 +28,18 @@ public class MovieSearchApp implements MovieSearchAppInterface {
     public void runCommandLoop() {
         System.out.println("Welcome to the Movie Search App.");
 
-        boolean loadedData = false;
         char command = '\0';
         while (command != 'Q') {
             command = this.mainMenuPrompt();
             switch (command) {
                 case 'L' -> {
                     loadData();
-                    loadedData = true;
                 }
                 case 'T' -> {
+                    if (!loadedData) {
+                        System.out.println("Please load data first.");
+                        break;
+                    }
                     System.out.println("Enter a keyword(s) to search by: ");
                     String titleInput = input.nextLine();
                     List<String> title = new ArrayList<>();
@@ -44,6 +47,10 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                     searchTitleCommand(title);
                 }
                 case 'Y' -> {
+                    if (!loadedData) {
+                        System.out.println("Please load data first.");
+                        break;
+                    }
                     System.out.println("Enter a year to search by: ");
                     System.out.println("(To search for multiple years, " +
                             "please include a \",\" separating the years.)");
@@ -73,6 +80,10 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                     }
                 }
                 case 'P' -> {
+                    if (!loadedData) {
+                        System.out.println("Please load data first.");
+                        break;
+                    }
                     System.out.println("Enter a popularity to search for: ");
                     System.out.println("(To search for multiple popularities, " +
                             "please include a \",\" separating the popularities.)");
@@ -140,6 +151,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
         String filename = input.nextLine().trim();
         if (backend.loadData(filename)) {
             System.out.println("Data loaded successfully.");
+            loadedData = true;
         }
         else {
             System.out.println("Error loading file.");
