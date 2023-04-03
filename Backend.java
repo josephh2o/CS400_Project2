@@ -66,7 +66,6 @@ public class Backend implements BackendInterface {
     
     public List<MovieInterface> getMoviesByTitle(String title) {
         List<MovieInterface> list = RBT.getDataByTitle(title.strip());
-        System.out.println(list);
         if (list == null) {
             list = new ArrayList<>();
         }
