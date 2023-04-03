@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Stack;
+import java.util.ArrayList;
 // import org.junit.jupiter.api.BeforeEach;
 // import org.junit.jupiter.api.Test;
 // import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -153,31 +154,6 @@ public class RedBlackTree<T extends Comparable<T>> implements SortedCollectionIn
     }
 
     protected void enforceRBTreePropertiesAfterInsert(Node<T> node) {
-        // if(node == root || node.context[0].blackHeight == 1) { // if first node added to the tree
-        //     root.blackHeight = 1;
-        //     return;
-        // }
-        //
-        // Node<T> parent = node.context[0];
-        // boolean sameSideParent = (parent.isRightChild() && node.isRightChild()) || (!parent.isRightChild() && !node.isRightChild()); // if parent is root then it is black
-        //                                                                        // so value does not matter                                                        
-        // Node<T> sibling = parent.isRightChild() ? // parent can not be a root node otherwise it would be black
-        //     parent.context[0].context[1] : parent.context[0].context[2]; // sibling may be null
-        //
-        // // Swap colors
-        // // parent.blackHeight = 1;
-        // // parent.context[0].blackHeight = 0;
-        //
-        // if(sibling == null || sibling.blackHeight == 1) { // If sibling is null treated as a black node
-        //     if(!sameSideParent)
-        //         rotate(node, parent); // rotate child and parent so they are on the same side
-        //     rotate(parent, parent.context[0]);
-        // } else { // sibling is red invert color
-        //     sibling.blackHeight = 1;
-        //     enforceRBTreePropertiesAfterInsert(parent.context[0]);
-        // }
-        //
-        // root.blackHeight = 1; // set root to black
         if(node == root || node.context[0].blackHeight == 1) {
             root.blackHeight = 1;
             return;
@@ -206,6 +182,68 @@ public class RedBlackTree<T extends Comparable<T>> implements SortedCollectionIn
             enforceRBTreePropertiesAfterInsert(parent.context[0]);
         }
         root.blackHeight = 1;
+    }
+
+    /*
+     * Returns the an ArrayList of data between a minimum and a maximum
+     * @param min the minimum value of the range
+     * @param max the maximum value of the range
+     * @return The data in the nodes between the mimimum and the maximum
+    */
+	public ArrayList<T> getRangeData(T min, T max) {
+        // Find the common parent of max and min
+        Node<T> commonParent = findCommonParent(min, root, max);
+        // return result of helper
+        return rangeHelper(min, 
+                commonParent,
+                max);
+    }
+
+    /**
+     * Helper for getRangeData that traverses the tree looking for a "middle" node
+     * between the min and the max. Sort of like binary search.
+     *
+     * @param min node corresponding to the min of the range
+     * @param curr current node that the algorithm has traversed to
+     * @param max node corresponding to the max of the range
+     */
+    private Node<T> findCommonParent(T min, Node<T> curr, T max) {
+        // current node too small
+        if(curr.data.compareTo(min) < 0)
+            return findCommonParent(min, curr.context[2], max);
+        // current node too large
+        if(curr.data.compareTo(max) > 0)
+            return findCommonParent(min, curr.context[1], max);
+        // current node just right
+        return curr;
+    }
+
+
+    /**
+     * Helper for getRangeData that traverses the tree to get the list of all the
+     * nodes in the range between min and max
+     * @param min node corresponding to the min of the range
+     * @param curr current node that the algorithm has traversed to
+     * @param max node corresponding to the max of the range
+     */
+    private ArrayList<T> rangeHelper(T min,
+            Node<T> curr, T max) {
+        ArrayList<T> data = new ArrayList<T>(); // data to return
+        ArrayList<T> child; // data of the next node traversed
+        if(curr == null) // reached end of the tree
+            return null;
+        child = rangeHelper(min, curr.context[1], max); // recurse to left child
+        if(child != null) // append elements in child list
+            data.addAll(child);
+        // Only add if node is in range
+        if(curr.data.compareTo(min) >= 0 && curr.data.compareTo(max) <= 0) {
+            data.add(curr.data);
+        }
+
+        child = rangeHelper(min, curr.context[2], max); // recures to right chlid
+        if(child != null) // append elements in child list
+            data.addAll(child);
+        return data;
     }
 
     /**

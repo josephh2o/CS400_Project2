@@ -54,77 +54,11 @@ public class MovieRedBlackTree extends RedBlackTree implements MovieRedBlackTree
 	public RBTList<Integer> getRangeData(int min, int max, boolean mode) {
         RBTList<Integer> minList = new RBTList<Integer>(min);
         RBTList<Integer> maxList = new RBTList<Integer>(max);
-        // If max or min is not in yearRBT
-        // if(mode && (!yearRBT.contains(minList) ||
-        //             !yearRBT.contains(maxList)))
-        //     return null;
-        //
-        // // If max or min is not in popularity RBT
-        // if(!mode && (!popularityRBT.contains(minList) ||
-        //             !popularityRBT.contains(maxList)))
-        //     return null;
-
-        if(mode) { // in year mode
-            // Find the common parent of max and min
-            Node<RBTList<Integer>> commonParent = findCommonParent(minList, yearRBT.root, maxList);
-            // return result of helper
-            return rangeHelper(minList, 
-                    commonParent,
-                    maxList);
+        RBTList<Integer> data = new RBTList<Integer>(0);
+        for(RBTList<Integer> l : mode ? // Convert 2d array into 1d array
+                yearRBT.getRangeData(minList, maxList) : popularityRBT.getRangeData(minList, maxList)) {
+            data.addAll(l);
         }
-
-        // in popularity mode
-        // Find the common parent of max and min
-        Node<RBTList<Integer>> commonParent = findCommonParent(minList, popularityRBT.root, maxList);
-        // return result of helper
-        return rangeHelper(minList, 
-                commonParent,
-                maxList);
-    }
-
-    /**
-     * Helper for getRangeData that traverses the tree looking for a "middle" node
-     * between the min and the max. Sort of like binary search.
-     *
-     * @param min node corresponding to the min of the range
-     * @param curr current node that the algorithm has traversed to
-     * @param max node corresponding to the max of the range
-     */
-    private Node<RBTList<Integer>> findCommonParent(RBTList<Integer> min, Node<RBTList<Integer>> curr, RBTList<Integer> max) {
-        // current node too small
-        if(curr.data.compareTo(min) < 0)
-            return findCommonParent(min, curr.context[2], max);
-        // current node too large
-        if(curr.data.compareTo(max) > 0)
-            return findCommonParent(min, curr.context[1], max);
-        // current node just right
-        return curr;
-    }
-
-    /**
-     * Helper for getRangeData that traverses the tree to get the list of all the
-     * nodes in the range between min and max
-     * @param min node corresponding to the min of the range
-     * @param curr current node that the algorithm has traversed to
-     * @param max node corresponding to the max of the range
-     */
-    private RBTList<Integer> rangeHelper(RBTList<Integer> min,
-            Node<RBTList<Integer>> curr, RBTList<Integer> max) {
-        RBTList<Integer> data = new RBTList<Integer>(0); // data to return
-        RBTList<Integer> child; // data of the next node traversed
-        if(curr == null) // reached end of the tree
-            return null;
-        child = rangeHelper(min, curr.context[1], max); // recurse to left child
-        if(child != null) // append elements in child list
-            data.addAll(child);
-        // Only add if node is in range
-        if(curr.data.compareTo(min) >= 0 && curr.data.compareTo(max) <= 0) {
-            data.addAll(curr.data);
-        }
-
-        child = rangeHelper(min, curr.context[2], max); // recures to right chlid
-        if(child != null) // append elements in child list
-            data.addAll(child);
         return data;
     }
 
