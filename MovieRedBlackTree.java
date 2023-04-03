@@ -24,6 +24,7 @@ public class MovieRedBlackTree extends RedBlackTree implements MovieRedBlackTree
      * @see RBTList
      */
 	public boolean insertByTitle(RBTList<String> movies) throws IllegalArgumentException, NullPointerException {
+        // System.out.println(movies.value.getTitle());
         return titleRBT.insert(movies);
     }
 

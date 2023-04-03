@@ -147,31 +147,59 @@ public class RedBlackTree<T extends Comparable<T>> implements SortedCollectionIn
     }
 
     protected void enforceRBTreePropertiesAfterInsert(Node<T> node) {
-        if(node == root || node.context[0].blackHeight == 1) { // if first node added to the tree
+        // if(node == root || node.context[0].blackHeight == 1) { // if first node added to the tree
+        //     root.blackHeight = 1;
+        //     return;
+        // }
+        //
+        // Node<T> parent = node.context[0];
+        // boolean sameSideParent = (parent.isRightChild() && node.isRightChild()) || (!parent.isRightChild() && !node.isRightChild()); // if parent is root then it is black
+        //                                                                        // so value does not matter                                                        
+        // Node<T> sibling = parent.isRightChild() ? // parent can not be a root node otherwise it would be black
+        //     parent.context[0].context[1] : parent.context[0].context[2]; // sibling may be null
+        //
+        // // Swap colors
+        // // parent.blackHeight = 1;
+        // // parent.context[0].blackHeight = 0;
+        //
+        // if(sibling == null || sibling.blackHeight == 1) { // If sibling is null treated as a black node
+        //     if(!sameSideParent)
+        //         rotate(node, parent); // rotate child and parent so they are on the same side
+        //     rotate(parent, parent.context[0]);
+        // } else { // sibling is red invert color
+        //     sibling.blackHeight = 1;
+        //     enforceRBTreePropertiesAfterInsert(parent.context[0]);
+        // }
+        //
+        // root.blackHeight = 1; // set root to black
+        if(node == root || node.context[0].blackHeight == 1) {
             root.blackHeight = 1;
             return;
         }
 
         Node<T> parent = node.context[0];
-        boolean sameSideParent = parent.isRightChild() == node.isRightChild(); // if parent is root then it is black
-                                                                               // so value does not matter                                                        
-        Node<T> sibling = parent.isRightChild() ? // parent can not be a root node otherwise it would be black
-            parent.context[0].context[1] : parent.context[0].context[2]; // sibling may be null
+        boolean sameSideParent = parent.isRightChild() == node.isRightChild();
+        Node<T> sibling = parent.isRightChild() ? parent.context[0].context[1]
+            : parent.context[0].context[2];
 
-        // Swap colors
-        parent.blackHeight = 1;
-        parent.context[0].blackHeight = 0;
-
-        if(sibling == null || sibling.blackHeight == 1) { // If sibling is null treated as a black node
-            if(!sameSideParent)
-                rotate(node, parent); // rotate child and parent so they are on the same side
-            rotate(parent, parent.context[0]);
-        } else { // sibling is red invert color
+        if(sibling == null || sibling.blackHeight == 1) {
+            if(!sameSideParent) {
+                rotate(node, parent);
+                node.blackHeight = 1;
+                node.context[0].blackHeight = 0;
+                rotate(node, node.context[0]);
+            } else {
+                parent.blackHeight = 1;
+                parent.context[0].blackHeight = 0;
+                rotate(parent, parent.context[0]);
+            }
+        } else {
+            parent.blackHeight = 1;
             sibling.blackHeight = 1;
+            parent.context[0].blackHeight = 0;
             enforceRBTreePropertiesAfterInsert(parent.context[0]);
         }
-
-        root.blackHeight = 1; // set root to black
+        root.blackHeight = 1;
     }
 
     /**
