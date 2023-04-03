@@ -124,14 +124,14 @@ public class RedBlackTree<T extends Comparable<T>> implements SortedCollectionIn
         if(child.context[0] != parent)
             throw new IllegalArgumentException();
         if(child.isRightChild()) {// left rotation
-            if(child.context[2] != null) {
-                child.context[2].context[0] = parent;
+            if(child.context[1] != null) {
+                child.context[1].context[0] = parent;
             }
             parent.context[2] = child.context[1]; // change right child of original parent
             child.context[1] = parent; // set parent as left child
         } else {// right rotation
-            if(child.context[1] != null) {
-                child.context[1].context[0] = parent;
+            if(child.context[2] != null) {
+                child.context[2].context[0] = parent;
             }
             parent.context[1] = child.context[2];
             child.context[2] = parent; // set parent as right child
