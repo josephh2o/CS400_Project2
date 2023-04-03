@@ -96,12 +96,20 @@ public class Backend implements BackendInterface {
     }
     
     public List<MovieInterface> getMoviesByYearRange(int year1, int year2) {
-        return RBT.getRangeData(year1, year2, true);
+        List<MovieInterface> list =RBT.getRangeData(year1, year2, true);
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        return list;
     }
     
     @Override
     public List<MovieInterface> getMoviesByPopularityRange(int pop1, int pop2) {
-        return RBT.getRangeData(pop1, pop2, false);
+        List<MovieInterface> list = RBT.getRangeData(pop1, pop2, false);
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        return list;
     }
     
     // FOR TESTING
