@@ -55,31 +55,31 @@ public class MovieRedBlackTree extends RedBlackTree implements MovieRedBlackTree
         RBTList<Integer> minList = new RBTList<Integer>(min);
         RBTList<Integer> maxList = new RBTList<Integer>(max);
         // If max or min is not in yearRBT
-        if(mode && (!yearRBT.contains(minList) ||
-                    !yearRBT.contains(maxList)))
-            return null;
-
-        // If max or min is not in popularity RBT
-        if(!mode && (!popularityRBT.contains(minList) ||
-                    !popularityRBT.contains(maxList)))
-            return null;
+        // if(mode && (!yearRBT.contains(minList) ||
+        //             !yearRBT.contains(maxList)))
+        //     return null;
+        //
+        // // If max or min is not in popularity RBT
+        // if(!mode && (!popularityRBT.contains(minList) ||
+        //             !popularityRBT.contains(maxList)))
+        //     return null;
 
         if(mode) { // in year mode
             // Find the common parent of max and min
             Node<RBTList<Integer>> commonParent = findCommonParent(minList, yearRBT.root, maxList);
             // return result of helper
-            return rangeHelper(yearRBT.findNodeWithData(minList), 
+            return rangeHelper(minList, 
                     commonParent,
-                    yearRBT.findNodeWithData(maxList));
+                    maxList);
         }
 
         // in popularity mode
         // Find the common parent of max and min
         Node<RBTList<Integer>> commonParent = findCommonParent(minList, popularityRBT.root, maxList);
         // return result of helper
-        return rangeHelper(popularityRBT.findNodeWithData(minList), 
+        return rangeHelper(minList, 
                 commonParent,
-                popularityRBT.findNodeWithData(maxList));
+                maxList);
     }
 
     /**
@@ -108,8 +108,8 @@ public class MovieRedBlackTree extends RedBlackTree implements MovieRedBlackTree
      * @param curr current node that the algorithm has traversed to
      * @param max node corresponding to the max of the range
      */
-    private RBTList<Integer> rangeHelper(Node<RBTList<Integer>> min,
-            Node<RBTList<Integer>> curr, Node<RBTList<Integer>> max) {
+    private RBTList<Integer> rangeHelper(RBTList<Integer> min,
+            Node<RBTList<Integer>> curr, RBTList<Integer> max) {
         RBTList<Integer> data = new RBTList<Integer>(0); // data to return
         RBTList<Integer> child; // data of the next node traversed
         if(curr == null) // reached end of the tree
@@ -118,7 +118,7 @@ public class MovieRedBlackTree extends RedBlackTree implements MovieRedBlackTree
         if(child != null) // append elements in child list
             data.addAll(child);
         // Only add if node is in range
-        if(curr.data.compareTo(min.data) >= 0 && curr.data.compareTo(max.data) <= 0) {
+        if(curr.data.compareTo(min) >= 0 && curr.data.compareTo(max) <= 0) {
             data.addAll(curr.data);
         }
 
