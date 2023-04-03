@@ -74,11 +74,19 @@ public class Backend implements BackendInterface {
     
     @Override
     public List<MovieInterface> getMoviesByPopularity(int popularity) {
-        return RBT.getDataByPopularity(popularity);
+        List<MovieInterface> list = RBT.getDataByPopularity(popularity);
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        return list;
     }
     
     public List<MovieInterface> getMoviesByYear(int year) {
-        return RBT.getDataByYear(year);
+        List<MovieInterface> list = RBT.getDataByPopularity(year);
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        return list;
     }
     public List<List<MovieInterface>> compareMoviesByYear(int year1, int year2) {
         ArrayList<List<MovieInterface>> output = new ArrayList<>();
