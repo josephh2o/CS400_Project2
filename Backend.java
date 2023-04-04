@@ -13,9 +13,14 @@ public class Backend implements BackendInterface {
         RBT = new MovieRedBlackTree();
     }
     
-    // todo is it frontend or backend's job to make sure loadData isn't called twice?
+    // for testing with placeholders
+    public Backend(boolean yes) {
+        reader = new MovieReaderPlaceholderBD();
+        RBT = new MovieRedBlackTreePlaceholderBD();
+    }
+    
     // O(NlogN)
-    public boolean loadData(String filename) { // change to include argument in method
+    public boolean loadData(String filename) {
         List<MovieInterface> dataList;
         try {
             dataList = reader.readMovieData(filename);
@@ -88,6 +93,7 @@ public class Backend implements BackendInterface {
         }
         return list;
     }
+    
 //    public List<List<MovieInterface>> compareMoviesByYear(int year1, int year2) {
 //        ArrayList<List<MovieInterface>> output = new ArrayList<>();
 //        output.add(getMoviesByYear(year1));
@@ -114,8 +120,23 @@ public class Backend implements BackendInterface {
     
     // FOR TESTING
     
+    /*
+    for my testers specifically using placeholders
+     */
     public String RBTString() {
-        return RBT.toString();
+        if (reader instanceof MovieReaderPlaceholderBD) {
+            return RBT.toString();
+        }
+        else {
+            return "";
+        }
+    }
+    
+    /*
+    per Kyle's request
+     */
+    public MovieRedBlackTreeInterface getRBT() {
+        return RBT;
     }
     
 }
