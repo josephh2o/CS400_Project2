@@ -16,7 +16,7 @@ public class Backend implements BackendInterface {
     // for testing with placeholders
     public Backend(boolean yes) {
         reader = new MovieReaderPlaceholderBD();
-        RBT = new MovieRedBlackTreePlaceholderBD();
+        RBT = new MovieRedBlackTreePlaceholderBD<>();
     }
     
     // O(NlogN)
