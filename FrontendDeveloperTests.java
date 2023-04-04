@@ -44,7 +44,7 @@ public class FrontendDeveloperTests {
         MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input2, backend2);
         movieSearchApp.runCommandLoop();
         String output2 = test2.checkOutput();
-        assumeTrue(output2.contains("Loaded 3 movies from test.txt."));
+        assumeTrue(output2.contains("Data loaded successfully"));
     }
 
     /**
@@ -164,7 +164,7 @@ public class FrontendDeveloperTests {
         movieSearchApp.runCommandLoop();
         String output = test6.checkOutput();
         { // Scenario A
-            assumeTrue(output.contains("Loaded 3 movies from test.txt"));
+            assumeTrue(output.contains("Data loaded successfully"));
         }
         { // Scenario B
             assumeTrue(output.contains("Movies found with the keyword James"));
