@@ -127,5 +127,14 @@ public class Movie implements MovieInterface {
    */
   @Override
   public boolean wonAwards() { return wonAwards; }
+    
+    /**
+     * to string for testing purposes
+      * @return string with year and popularity
+     */
+  @Override
+  public String toString() {
+    return title + " (" + year + ")" + " Popularity: " + popularity;
+  }
   
 }

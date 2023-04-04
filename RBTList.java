@@ -13,4 +13,14 @@ public class RBTList<T extends Comparable<T>> extends ArrayList<MovieInterface> 
     public int compareTo(RBTList<T> otherValue) {
         return value.compareTo(otherValue.value);
     }
+    
+    @Override
+    public String toString() {
+        String output = "[";
+        for (MovieInterface movie: this) {
+            output += " " + movie.toString() + ", ";
+        }
+        output = output.substring(0, output.length()-2);
+        return output;
+    }
 }
