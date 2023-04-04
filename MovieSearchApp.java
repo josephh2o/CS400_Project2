@@ -174,9 +174,10 @@ public class MovieSearchApp implements MovieSearchAppInterface {
             if (movies.size() == 0) { // No movies found
                 System.out.println("No movies found with the keyword " + title.get(0) + ".");
             } else { // Movies found
-                System.out.println("Movies found with the keyword " + title.get(0) + ":");
+                System.out.println("Found " + movies.size() + " movie(s) with the title " + title.get(0) + ":");
                 for (MovieInterface movie : movies) {
-                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: " + movie.getPopularity());
+                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: "
+                            + movie.getPopularity());
                 }
             }
             title.remove(0);
@@ -195,9 +196,10 @@ public class MovieSearchApp implements MovieSearchAppInterface {
             if (movies.size() == 0) { // No movies found
                 System.out.println("No movies found in " + moviesYear + ".");
             } else { // Movies found
-                System.out.println("Movies found in " + moviesYear + ":");
+                System.out.println("Found " + movies.size() + "movie(s) in " + moviesYear + ":");
                 for (MovieInterface movie : movies) {
-                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: " + movie.getPopularity());
+                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: "
+                            + movie.getPopularity());
                 }
             }
         } catch (NumberFormatException e) {
@@ -217,9 +219,11 @@ public class MovieSearchApp implements MovieSearchAppInterface {
             if (movies.size() == 0) { // No movies found
                 System.out.println("No movies found with the popularity " + moviesPopularity + ".");
             } else { // Movies found
-                System.out.println("Movies found with the popularity " + moviesPopularity + ":");
+                System.out.println("Found " + movies.size() + " movie(s) with the popularity " + moviesPopularity
+                        + ":");
                 for (MovieInterface movie : movies) {
-                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: " + movie.getPopularity());
+                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: "
+                            + movie.getPopularity());
                 }
             }
         } catch (NumberFormatException e) {
@@ -243,10 +247,11 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                 System.out.println("No movies found in " + moviesYearMin + " to "
                         + moviesYearMax + ".");
             } else { // Movies found
-                System.out.println("Movies found in " + moviesYearMin + " to "
+                System.out.println("Found " + movies.size() + " movie(s) in " + moviesYearMin + " to "
                         + moviesYearMax + ":");
                 for (MovieInterface movie : movies) {
-                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: " + movie.getPopularity());
+                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: "
+                            + movie.getPopularity());
                 }
             }
         } catch (NumberFormatException e) {
@@ -270,10 +275,11 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                 System.out.println("No movies found with the popularity " + moviesPopularityMin
                         + " to " + moviesPopularityMax + ".");
             } else { // Movies found
-                System.out.println("Movies found with the popularity " + moviesPopularityMin
+                System.out.println("Found " + movies.size() + " movie(s) with the popularity " + moviesPopularityMin
                         + " to " + moviesPopularityMax + ":");
                 for (MovieInterface movie : movies) {
-                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: " + movie.getPopularity());
+                    System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: "
+                            + movie.getPopularity());
                 }
             }
         } catch (NumberFormatException e) {
