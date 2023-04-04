@@ -88,12 +88,12 @@ public class Backend implements BackendInterface {
         }
         return list;
     }
-    public List<List<MovieInterface>> compareMoviesByYear(int year1, int year2) {
-        ArrayList<List<MovieInterface>> output = new ArrayList<>();
-        output.add(getMoviesByYear(year1));
-        output.add(getMoviesByYear(year2));
-        return output;
-    }
+//    public List<List<MovieInterface>> compareMoviesByYear(int year1, int year2) {
+//        ArrayList<List<MovieInterface>> output = new ArrayList<>();
+//        output.add(getMoviesByYear(year1));
+//        output.add(getMoviesByYear(year2));
+//        return output;
+//    }
     
     public List<MovieInterface> getMoviesByYearRange(int year1, int year2) {
         List<MovieInterface> list = RBT.getRangeData(year1, year2, true);
