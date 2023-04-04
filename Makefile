@@ -27,7 +27,15 @@ MovieReader.class: MovieReader.java Movie.class
 
 Movie.class: Movie.java
 	javac Movie.java
-# runTest:
+
+runTests: AETests
+
+AETests: AlgorithmEngineerTests.class
+	java -jar lib/junit5.jar -cp . --select-class=AlgorithmEngineerTests
+
+AlgorithmEngineerTests.class: AlgorithmEngineerTests.java MovieRedBlackTree.class
+	javac -cp .:lib/junit5.jar $<
+
 
 clean:
 	rm *.class

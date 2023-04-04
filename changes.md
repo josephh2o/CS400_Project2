@@ -2,9 +2,9 @@
 
 ### for MovieRedBlackTree.java ###
 
-- [ ] things are returning null when items are not found; these cause NullPointerExceptions in Backend
+- [x] things are returning null when items are not found; these cause NullPointerExceptions in Backend
 	(instead, just return empty lists)
-- [ ] getting a never ending loop around "man with the golden gun"
+- [x] getting a never ending loop around "man with the golden gun"
 
 ### Frontend ###
 
