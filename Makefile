@@ -1,41 +1,41 @@
+Tests = AETests
+
 run: runProgram.class
 	java runProgram
 
 runProgram.class: runProgram.java
-	javac runProgram.java
+	javac $^
 
 runProgram.java: MovieSearchApp.class Backend.class RBTList.class MovieRedBlackTree.class MovieReader.class
-	javac MovieSearchApp.java
 
 MovieSearchApp.class: MovieSearchApp.java
-	javac MovieSearchApp.java
+	javac $^
 
 Backend.class: Backend.java
-	javac Backend.java
+	javac $^
 
 RBTList.class: RBTList.java
-	javac RBTList.java
+	javac $^
 
 MovieRedBlackTree.class: MovieRedBlackTree.java RedBlackTree.class
-	javac MovieRedBlackTree.java
+	javac $<
 
 RedBlackTree.class: RedBlackTree.java
-	javac RedBlackTree.java
+	javac $^
 
 MovieReader.class: MovieReader.java Movie.class
-	javac MovieReader.java
+	javac $<
 
 Movie.class: Movie.java
-	javac Movie.java
+	javac $^
 
-runTests: AETests
+runTests: $(Tests)
 
 AETests: AlgorithmEngineerTests.class
 	java -jar lib/junit5.jar -cp . --select-class=AlgorithmEngineerTests
 
-AlgorithmEngineerTests.class: AlgorithmEngineerTests.java MovieRedBlackTree.class
+AlgorithmEngineerTests.class: AlgorithmEngineerTests.java MovieRedBlackTree.class RBTList.class RedBlackTree.class
 	javac -cp .:lib/junit5.jar $<
 
-
 clean:
-	rm *.class
+	rm *.class 2>/dev/null || true # Suppress errors
