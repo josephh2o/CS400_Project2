@@ -149,11 +149,15 @@ public class MovieSearchApp implements MovieSearchAppInterface {
     public void loadData() {
         System.out.println("Enter the name of the file to load: ");
         String filename = input.nextLine().trim();
-        if (backend.loadData(filename)) {
+        if (loadedData) { // Check if data is already loaded
+            System.out.println("Data already loaded.");
+            return;
+        }
+        if (backend.loadData(filename)) { // True if data is loaded successfully
             System.out.println("Data loaded successfully.");
             loadedData = true;
         }
-        else {
+        else { // False if data is not loaded successfully
             System.out.println("Error loading file.");
         }
     }
