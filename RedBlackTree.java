@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * In this activity, we will start with implementing rotations for the binary
  * search tree insert algorithm.
  */
-public class RedBlackTree<T extends Comparable<T>> implements SortedCollectionInterface<T> {
+public class RedBlackTree<T extends Comparable<T>> implements RedBlackTreeInterface<T> {
 
     /**
      * This class represents a node holding a single value within a binary tree.
@@ -190,7 +190,7 @@ public class RedBlackTree<T extends Comparable<T>> implements SortedCollectionIn
      * @param max the maximum value of the range
      * @return The data in the nodes between the mimimum and the maximum
     */
-	public ArrayList<T> getRangeData(T min, T max) {
+	public ArrayList<T> subTreeData(T min, T max) throws NullPointerException {
         // Find the common parent of max and min
         Node<T> commonParent = findCommonParent(min, root, max);
         // return result of helper

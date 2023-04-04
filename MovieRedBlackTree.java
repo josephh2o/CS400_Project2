@@ -56,7 +56,7 @@ public class MovieRedBlackTree extends RedBlackTree implements MovieRedBlackTree
         RBTList<Integer> maxList = new RBTList<Integer>(max);
         RBTList<Integer> data = new RBTList<Integer>(0);
         for(RBTList<Integer> l : mode ? // Convert 2d array into 1d array
-                yearRBT.getRangeData(minList, maxList) : popularityRBT.getRangeData(minList, maxList)) {
+                yearRBT.subTreeData(minList, maxList) : popularityRBT.subTreeData(minList, maxList)) {
             data.addAll(l);
         }
         return data;
