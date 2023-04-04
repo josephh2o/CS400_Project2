@@ -3,6 +3,11 @@ import java.util.List;
 
 public class BackendFD implements BackendInterface{
     @Override
+    public boolean loadData(String filename) {
+        return true;
+    }
+
+    @Override
     public List<MovieInterface> getMoviesByTitle(String title) {
         List<MovieInterface> movies = new ArrayList<>();
         movies.add(new MovieFD(1111, "aaaa", 111, "aaaa", "aaaa",
@@ -31,11 +36,6 @@ public class BackendFD implements BackendInterface{
     }
 
     @Override
-    public List<List<MovieInterface>> compareMoviesByYear(int year1, int year2) {
-        return null;
-    }
-
-    @Override
     public List<MovieInterface> getMoviesByYearRange(int year1, int year2) {
         List<MovieInterface> movies = new ArrayList<>();
         movies.add(new MovieFD(6666, "ffff", 666, "ffff", "ffff",
@@ -53,10 +53,5 @@ public class BackendFD implements BackendInterface{
         movies.add(new MovieFD(9999, "iiii", 999, "iiii", "iiii",
                 "iiii", "iiii", 999, true));
         return movies;
-    }
-
-    @Override
-    public boolean loadData(List<MovieInterface> movies) {
-        return false;
     }
 }

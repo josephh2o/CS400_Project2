@@ -18,10 +18,9 @@ public class FrontendDeveloperTests {
     @Test
     public void test1() {
         BackendInterface backend1 = new BackendFD();
-        MovieReaderInterface movieReader1 = new MovieReaderFD();
         TextUITester test1 = new TextUITester("L\n\nT\n\nP\n\nY\n\n1\nQ\n");
         Scanner input1 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input1, backend1, movieReader1);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input1, backend1);
         movieSearchApp.runCommandLoop();
         String output1 = test1.checkOutput();
         { // Scenario A
@@ -40,10 +39,9 @@ public class FrontendDeveloperTests {
     @Test
     public void test2() {
         BackendInterface backend2 = new BackendFD();
-        MovieReaderInterface movieReader2 = new MovieReaderFD();
         TextUITester test2 = new TextUITester("L\ntest.txt\nQ\n");
         Scanner input2 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input2, backend2, movieReader2);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input2, backend2);
         movieSearchApp.runCommandLoop();
         String output2 = test2.checkOutput();
         assumeTrue(output2.contains("Loaded 3 movies from test.txt."));
@@ -60,10 +58,9 @@ public class FrontendDeveloperTests {
     @Test
     public void test3() {
         BackendInterface backend3 = new BackendFD();
-        MovieReaderInterface movieReader3 = new MovieReaderFD();
         TextUITester test3 = new TextUITester("T\nalpha\nT\nbeta gamma\nT\nDon't\nT\n1\nQ\n");
         Scanner input3 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input3, backend3, movieReader3);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input3, backend3);
         movieSearchApp.runCommandLoop();
         String output3 = test3.checkOutput();
         { // Scenario A
@@ -94,10 +91,9 @@ public class FrontendDeveloperTests {
     @Test
     public void test4() {
         BackendInterface backend4 = new BackendFD();
-        MovieReaderInterface movieReader4 = new MovieReaderFD();
         TextUITester test4 = new TextUITester("Y\n2010\nY\n2011,2012\nY\n2013-2023\nY\nabc\nY\nabc-def\nQ\n");
         Scanner input4 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input4, backend4, movieReader4);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input4, backend4);
         movieSearchApp.runCommandLoop();
         String output4 = test4.checkOutput();
         { // Scenarios A and B
@@ -129,10 +125,9 @@ public class FrontendDeveloperTests {
     @Test
     public void test5() {
         BackendInterface backend5 = new BackendFD();
-        MovieReaderInterface movieReader5 = new MovieReaderFD();
         TextUITester test5 = new TextUITester("P\n1\nP\n2,3\nP\n4-5\nP\nabc\nP\nabc-def\nQ\n");
         Scanner input5 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input5, backend5, movieReader5);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input5, backend5);
         movieSearchApp.runCommandLoop();
         String output5 = test5.checkOutput();
         { // Scenarios A and B
@@ -163,10 +158,9 @@ public class FrontendDeveloperTests {
     @Test
     public void test6() {
         BackendInterface backend6 = new BackendFD();
-        MovieReaderInterface movieReader6 = new MovieReaderFD();
         TextUITester test6 = new TextUITester("L\ntest.txt\nT\nJames Bond\nY\n2021-2023\nP\n9,10\nQ\n");
         Scanner input6 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input6, backend6, movieReader6);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input6, backend6);
         movieSearchApp.runCommandLoop();
         String output = test6.checkOutput();
         { // Scenario A

@@ -1,52 +1,52 @@
 public class MovieRedBlackTreeFD implements MovieRedBlackTreeInterface {
 
     @Override
-    public boolean insertByYear(RBTListFD<Integer> movies) throws IllegalArgumentException, NullPointerException {
+    public boolean insertByYear(RBTList<Integer> movies) throws IllegalArgumentException, NullPointerException {
         return false;
     }
 
     @Override
-    public boolean insertByTitle(RBTListFD<String> movies) throws IllegalArgumentException, NullPointerException {
+    public boolean insertByTitle(RBTList<String> movies) throws IllegalArgumentException, NullPointerException {
         return false;
     }
 
     @Override
-    public boolean insertByPopularity(RBTListFD<Integer> movies) throws IllegalArgumentException, NullPointerException {
+    public boolean insertByPopularity(RBTList<Integer> movies) throws IllegalArgumentException, NullPointerException {
         return false;
     }
 
     @Override
-    public RBTListFD<Integer> getRangeData(int min, int max, boolean mode) {
+    public RBTList<Integer> getRangeData(int min, int max, boolean mode) {
         return null;
     }
 
     @Override
-    public RBTListFD<Integer> getDataByYear(int year) {
+    public RBTList<Integer> getDataByYear(int year) {
         return null;
     }
 
     @Override
-    public RBTListFD<String> getDataByTitle(String title) {
+    public RBTList<String> getDataByTitle(String title) {
         return null;
     }
 
     @Override
-    public RBTListFD<Integer> getDataByPopularity(int popularity) {
+    public RBTList<Integer> getDataByPopularity(int popularity) {
         return null;
     }
 
     @Override
-    public RedBlackTree<RBTListFD<Integer>> getYearRBT() {
+    public RedBlackTree<RBTList<Integer>> getYearRBT() {
         return null;
     }
 
     @Override
-    public RedBlackTree<RBTListFD<String>> getTitleRBT() {
+    public RedBlackTree<RBTList<String>> getTitleRBT() {
         return null;
     }
 
     @Override
-    public RedBlackTree<RBTListFD<Integer>> getPopularityRBT() {
+    public RedBlackTree<RBTList<Integer>> getPopularityRBT() {
         return null;
     }
 }
