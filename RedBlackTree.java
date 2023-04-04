@@ -193,6 +193,9 @@ public class RedBlackTree<T extends Comparable<T>> implements RedBlackTreeInterf
 	public ArrayList<T> subTreeData(T min, T max) throws NullPointerException {
         // Find the common parent of max and min
         Node<T> commonParent = findCommonParent(min, root, max);
+        if(commonParent == null) {
+            throw new NullPointerException("No common parent found.");
+        }
         // return result of helper
         return rangeHelper(min, 
                 commonParent,
@@ -208,6 +211,8 @@ public class RedBlackTree<T extends Comparable<T>> implements RedBlackTreeInterf
      * @param max node corresponding to the max of the range
      */
     private Node<T> findCommonParent(T min, Node<T> curr, T max) {
+        if(curr == null)
+            return null;
         // current node too small
         if(curr.data.compareTo(min) < 0)
             return findCommonParent(min, curr.context[2], max);
