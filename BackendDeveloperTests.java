@@ -84,8 +84,6 @@ public class BackendDeveloperTests {
     @Test
     public void testGetMoviesByRange() {
         backend.loadData("noduplicates.csv");
-        System.out.println(backend.getMoviesByYearRange(1920, 1920).toString());
-        System.out.println(backend.getMoviesByPopularityRange(0, 0).toString());
         assertEquals("[1920:  {Bad Old Movie, 1920, 0},  {Good Old Movie, 1920, 100}]", backend.getMoviesByYearRange(1920, 1920).toString());
         assertEquals("[0:  {Bad Old Movie, 1920, 0}]", backend.getMoviesByPopularityRange(0, 0).toString());
     }
@@ -106,7 +104,6 @@ public class BackendDeveloperTests {
         movieSearchApp.runCommandLoop();
         
         String output = tester.checkOutput();
-        System.out.println(output);
         
         assertTrue(output.contains("Error loading file."));
         assertTrue(output.contains("Data loaded successfully."));
@@ -138,7 +135,6 @@ public class BackendDeveloperTests {
         movieSearchApp.runCommandLoop();
         
         String output = tester.checkOutput();
-        System.out.println(output);
         
         assertTrue(output.contains("Missing (1982) Popularity: 30"));
         assertTrue(output.contains("Running Man, The (1987) Popularity: 31"));
