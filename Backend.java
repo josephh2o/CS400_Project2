@@ -25,7 +25,7 @@ public class Backend implements BackendInterface {
         try {
             dataList = reader.readMovieData(filename);
         }
-        catch (FileNotFoundException | NullPointerException e) {
+        catch (FileNotFoundException | NullPointerException e){
             return false;
         }
         
