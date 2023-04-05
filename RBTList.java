@@ -16,11 +16,11 @@ public class RBTList<T extends Comparable<T>> extends ArrayList<MovieInterface> 
     
     @Override
     public String toString() {
-        String output = "[";
+        String output = "[" + value + ": ";
         for (MovieInterface movie: this) {
             output += " " + movie.toString() + ", ";
         }
         output = output.substring(0, output.length()-2);
-        return output;
+        return output + "]";
     }
 }
