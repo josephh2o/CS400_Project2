@@ -31,10 +31,10 @@ public class MovieSearchApp implements MovieSearchAppInterface {
         while (command != 'Q') {
             command = this.mainMenuPrompt();
             switch (command) {
-                case 'L' -> {
+                case 'L' -> { // Load data
                     loadData();
                 }
-                case 'T' -> {
+                case 'T' -> { // Search by title
                     if (!loadedData) { // if data has not been loaded
                         System.out.println("Please load data first.");
                         break;
@@ -45,7 +45,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                     title.add(titleInput);
                     searchTitleCommand(title);
                 }
-                case 'Y' -> {
+                case 'Y' -> { // Search by year
                     if (!loadedData) { // if data has not been loaded
                         System.out.println("Please load data first.");
                         break;
@@ -78,7 +78,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                         searchYearCommand(year);
                     }
                 }
-                case 'P' -> {
+                case 'P' -> { // Search by popularity
                     if (!loadedData) { // if data has not been loaded
                         System.out.println("Please load data first.");
                         break;
@@ -111,8 +111,8 @@ public class MovieSearchApp implements MovieSearchAppInterface {
                         searchPopularityCommand(popularity);
                     }
                 }
-                case 'Q' -> System.out.println("Goodbye!");
-                default -> System.out.println("Invalid command. Please try again.");
+                case 'Q' -> System.out.println("Goodbye!"); // Quit
+                default -> System.out.println("Invalid command. Please try again."); // Invalid command
             }
         }
         System.out.println("Thank you for using the Movie Search App & enjoy the movie!");
