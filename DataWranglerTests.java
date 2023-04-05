@@ -314,17 +314,101 @@ public class DataWranglerTests {
 	
 	// --------------------------------Integration tests-----------------------------------------
 	
+	/**
+	 * Tests lower-level integration with AE's RBTs and methods
+	 * Tests the following:
+	 * 1. Inserting movie data into RBT where each movie's key data 
+	 *             (i.e. year, popularity, or title) is unique
+	 * 2. Inserting movie data into RBT where key data is the same between some movies
+	 */
 	@Test
 	public void integrationTest1() {
-	  
-	  
-	  
-	 // System.setOut(consoleOut);
+	  // set up DW stuff
+	  MovieReaderInterface reader = new MovieReaderDW();
+      List<MovieInterface> movieList = null; 
+      try {
+          movieList = reader.readMovieData("data/IntegrationDataDW.csv");
+      } catch (FileNotFoundException e) {
+          System.out.println("FileNotFoundException thrown");
+      }
+      
+      // set up AE's RBT
+      MovieRedBlackTree trees = new MovieRedBlackTree();
+      
+      // 1. make sure data can be read into am RBT where each movie gets its 
+      //        own node (i.e. no duplicate titles)
+      
+      RBTList<String> stringList;
+      for (MovieInterface movie: movieList) {
+        stringList = new RBTList<String>(movie.getTitle());
+        stringList.add(movie);
+          trees.insertByTitle(stringList);
+      }
+      
+      assertEquals(7, trees.getTitleRBT().size()); // 7 movies in data, 7 nodes in tree
+      
+      // 2. make sure data can be read into an RBT where some movies are on same node
+      // (i.e. some movies have same year)
+      RBTList<Integer> intList;
+      RBTList<Integer>[] yearMap = new RBTList[80]; 
+      int index;
+      for (MovieInterface movie: movieList) { // create lists for each year
+          index = movie.getYear()-1920;
+          if (yearMap[index] == null) {
+              yearMap[index] = new RBTList<Integer>(index+1920);
+          }
+          yearMap[index].add(movie);
+      }
+      for (RBTList<Integer> yearList: yearMap) { // add each list into the tree
+          if (yearList != null)
+              trees.insertByYear(yearList);
+      }
+      
+      assertEquals(6, trees.getYearRBT().size()); // 7 movies in data, 6 nodes in tree    
+      
 	}
 
+	
+	/**
+	 * Higher-level integration testing to make sure that backend can 
+	 * load data and use the data in the expected way.
+	 * The following are tested:
+	 * 0. backend loading data
+	 * 1. search that returns nothing (no matches found)
+	 * 2. search that returns a single item
+	 * 3. search that returns multiple items using a single search key
+	 * 4. search that returns multiple items using a range of search keys
+	 */
 	@Test
     public void integrationTest2() {
+      Backend bckend = new Backend();
+   
+      // 0. make sure data loads successfully
+      assertEquals(true, bckend.loadData("data/IntegrationDataDW2.csv"));
       
+      List<MovieInterface> movieList;
+      
+      
+      // 1. test getMoviesByTitle (expecting no items in list)
+      movieList = bckend.getMoviesByTitle("test title");
+      assertEquals(0, movieList.size());
+      
+      
+      // 2. test getMoviesByYear (expecting one item in list)
+      movieList = bckend.getMoviesByYear(1930);
+      assertEquals(1, movieList.size());
+      assertEquals(1930, movieList.get(0).getYear());
+      
+      // 3. test getMoviesByYear (expecting multiple items in list)
+      movieList = bckend.getMoviesByYear(1950);
+      assertEquals(2, movieList.size());
+      assertEquals(1950, movieList.get(0).getYear());
+      
+      // 4. test getMoviesByPopularityRange()
+      movieList = bckend.getMoviesByPopularityRange(50, 60);
+      assertEquals(3, movieList.size());
+      assertEquals(true, ( (movieList.get(1).getPopularity() <= 60) && 
+           (movieList.get(1).getPopularity() >= 50) ) );
       
     }
 
