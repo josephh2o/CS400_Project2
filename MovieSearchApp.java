@@ -172,7 +172,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
         while (title.size() > 0) {
             List<MovieInterface> movies = backend.getMoviesByTitle(title.get(0));
             if (movies.size() == 0) { // No movies found
-                System.out.println("No movies found with the keyword " + title.get(0) + ".");
+                System.out.println("No movies found with the title " + title.get(0) + ".");
             } else { // Movies found
                 System.out.println("Found " + movies.size() + " movie(s) with the title " + title.get(0) + ":");
                 for (MovieInterface movie : movies) {

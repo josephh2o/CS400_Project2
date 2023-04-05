@@ -1,4 +1,4 @@
-Tests = AETests
+Tests = AETests, FDTests
 
 run: runProgram.class
 	java runProgram
@@ -36,6 +36,12 @@ AETests: AlgorithmEngineerTests.class
 
 AlgorithmEngineerTests.class: AlgorithmEngineerTests.java MovieRedBlackTree.class RBTList.class RedBlackTree.class
 	javac -cp .:lib/junit5.jar $<
+
+FDTests: FrontendDeveloperTests.class
+    java -jar lib/junit5.jar -cp . --select-class=FrontendDeveloperTests
+
+FrontendDeveloperTests.class: FrontendDeveloperTests.java MovieSearchApp.class Backend.class RBTList.class MovieRedBlackTree.class MovieReader.class
+    javac -cp .:lib/junit5.jar $<
 
 clean:
 	rm *.class 2>/dev/null || true # Suppress errors
