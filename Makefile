@@ -1,4 +1,4 @@
-Tests = AETests, FDTests
+Tests = AETests, FDTests, BDTests
 
 run: runProgram.class
 	java runProgram
@@ -29,12 +29,21 @@ MovieReader.class: MovieReader.java Movie.class
 Movie.class: Movie.java
 	javac $^
 
+TextUITester.class: TextUITester.java
+	javac $^
+
 runTests: $(Tests)
 
 AETests: AlgorithmEngineerTests.class
 	java -jar lib/junit5.jar -cp . --select-class=AlgorithmEngineerTests
 
 AlgorithmEngineerTests.class: AlgorithmEngineerTests.java MovieRedBlackTree.class RBTList.class RedBlackTree.class Backend.class
+	javac -cp .:lib/junit5.jar $<
+
+BDTests: BackendDeveloperTests.class
+	java -jar lib/junit5.jar -cp . --select-class=BackendDeveloperTests
+
+BackendDeveloperTests.class: BackendDeveloperTests.java Backend.class TextUITester.class MovieSearchApp.class RBTList.class MovieRedBlackTree.class
 	javac -cp .:lib/junit5.jar $<
 
 FDTests: FrontendDeveloperTests.class
