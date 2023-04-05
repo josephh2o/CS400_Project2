@@ -34,7 +34,7 @@ runTests: $(Tests)
 AETests: AlgorithmEngineerTests.class
 	java -jar lib/junit5.jar -cp . --select-class=AlgorithmEngineerTests
 
-AlgorithmEngineerTests.class: AlgorithmEngineerTests.java MovieRedBlackTree.class RBTList.class RedBlackTree.class
+AlgorithmEngineerTests.class: AlgorithmEngineerTests.java MovieRedBlackTree.class RBTList.class RedBlackTree.class Backend.class
 	javac -cp .:lib/junit5.jar $<
 
 FDTests: FrontendDeveloperTests.class
