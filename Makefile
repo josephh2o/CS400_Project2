@@ -47,9 +47,9 @@ BackendDeveloperTests.class: BackendDeveloperTests.java Backend.class TextUITest
 	javac -cp .:lib/junit5.jar $<
 
 FDTests: FrontendDeveloperTests.class
-    java -jar lib/junit5.jar -cp . --select-class=FrontendDeveloperTests
+	java -jar lib/junit5.jar -cp . --select-class=FrontendDeveloperTests
 
-FrontendDeveloperTests.class: FrontendDeveloperTests.java MovieSearchApp.class Backend.class RBTList.class MovieRedBlackTree.class MovieReader.class
+FrontendDeveloperTests.class: FrontendDeveloperTests.java MovieSearchApp.class Backend.class RBTList.class MovieRedBlackTree.class MovieReader.class Movie.class
     javac -cp .:lib/junit5.jar $<
 
 DWTests: DataWranglerTests.class
