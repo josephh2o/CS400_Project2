@@ -196,7 +196,7 @@ public class MovieSearchApp implements MovieSearchAppInterface {
             if (movies.size() == 0) { // No movies found
                 System.out.println("No movies found in " + moviesYear + ".");
             } else { // Movies found
-                System.out.println("Found " + movies.size() + "movie(s) in " + moviesYear + ":");
+                System.out.println("Found " + movies.size() + " movie(s) in " + moviesYear + ":");
                 for (MovieInterface movie : movies) {
                     System.out.println(movie.getTitle() + " (" + movie.getYear() + ")" + " Popularity: "
                             + movie.getPopularity());
