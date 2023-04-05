@@ -238,7 +238,7 @@ public class DataWranglerTests {
 	  // 1. test w/ no results
 	  titles.add("no match");
 	  fntend.searchTitleCommand(titles);
-	  assertEquals("No movies found with the keyword no match.",newOut.toString().trim());
+	  assertEquals("No movies found with the title no match.",newOut.toString().trim());
 	  if (titles.size() != 0) titles.remove(0);
 	  
 	  
@@ -246,7 +246,7 @@ public class DataWranglerTests {
 	  newOut.reset();
 	  titles.add("match");
 	  fntend.searchTitleCommand(titles);
-	  assertEquals("Movies found with the keyword match:\r\nmatch",newOut.toString().trim());
+	  assertEquals("Found 1 movie(s) with the title match:\r\nmatch (0) Popularity: 0",newOut.toString().trim());
 	  
 	  
 	  // other note: it seems the runCommandLoop() doesn't allow for multiple titles,
@@ -293,8 +293,8 @@ public class DataWranglerTests {
 	  fntend.searchPopularityRange(min, max);
 	  
 	  
-	  assertEquals("Movies found with the popularity 30 to 70:\r\n" +
-	              "match (Rating: 50)",newOut.toString().trim());
+	  assertEquals("Found 1 movie(s) with the popularity 30 to 70:\r\n" +
+	              "match (0) Popularity: 50",newOut.toString().trim());
 	  
 	  
 	  
@@ -359,11 +359,7 @@ public class DataWranglerTests {
       return null;
     }
 
-    @Override
-    public List<List<MovieInterface>> compareMoviesByYear(int year1, int year2) {
-      // TODO Auto-generated method stub
-      return null;
-    }
+    
 
     @Override
     public List<MovieInterface> getMoviesByYearRange(int year1, int year2) {
