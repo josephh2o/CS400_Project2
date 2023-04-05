@@ -27,7 +27,6 @@ public class MovieSearchApp implements MovieSearchAppInterface {
     @Override
     public void runCommandLoop() {
         System.out.println("Welcome to the Movie Search App.");
-
         char command = '\0';
         while (command != 'Q') {
             command = this.mainMenuPrompt();
