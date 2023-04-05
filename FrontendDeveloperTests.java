@@ -164,7 +164,6 @@ public class FrontendDeveloperTests {
         MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
         String output = test.checkOutput();
-        System.out.println(output);
         { // Scenario A
             assertTrue(output.contains("Data loaded successfully"));
         }
