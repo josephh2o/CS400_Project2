@@ -52,5 +52,12 @@ FDTests: FrontendDeveloperTests.class
 FrontendDeveloperTests.class: FrontendDeveloperTests.java MovieSearchApp.class Backend.class RBTList.class MovieRedBlackTree.class MovieReader.class
     javac -cp .:lib/junit5.jar $<
 
+DWTests: DataWranglerTests.class
+	java -jar lib/junit5.jar -cp . --select-class=DataWranglerTests
+
+DataWranglerTests.class: DataWranglerTests.java Movie.class MovieReader.class MovieRedBlackTree.class Backend.class  MovieSearchApp.class
+	javac -cp .:lib/junit5.jar $<
+
+
 clean:
 	rm *.class 2>/dev/null || true # Suppress errors

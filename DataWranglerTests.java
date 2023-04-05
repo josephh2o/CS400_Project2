@@ -12,7 +12,7 @@ import java.io.PrintStream;
 
 
 /**
- * Tester class for the MovieDW and MovieReaderDW
+ * Tester class for the Movie and MovieReader
  * classes. Uses junit5 tests.
  * @author Cameron
  */
@@ -20,13 +20,13 @@ public class DataWranglerTests {
    
 
 	/**
-	 * Tests the MovieDW class on its own (without reader class).
+	 * Tests the Movie class on its own (without reader class).
 	 * Makes sure no errors are found when constructing/accessing data.
 	 */
 	@Test
 	public void test1() {
 
-		MovieInterface movie = new MovieDW(2001, "Movie Title", 178, "Drama",
+		MovieInterface movie = new Movie(2001, "Movie Title", 178, "Drama",
 			       	"Lead actor", "Lead actress", "Director",
 				90,true );
 
@@ -63,12 +63,12 @@ public class DataWranglerTests {
 
 
 	/**
-	 * Tests the MovieDW class (getters) while processing one line of a csv file
-	 * using the MovieReaderDW. Uses standard (i.e. likely not error-prone) data.
+	 * Tests the Movie class (getters) while processing one line of a csv file
+	 * using the MovieReader. Uses standard (i.e. likely not error-prone) data.
 	 */
 	@Test
 	public void test2() {
-		MovieReaderInterface reader = new MovieReaderDW();
+		MovieReaderInterface reader = new MovieReader();
 
 		List<MovieInterface> list = null; 
 		try {
@@ -94,12 +94,12 @@ public class DataWranglerTests {
 	
 
 	/**
-	 * Tests the MovieReaderDW class with data that contains blank entries,
+	 * Tests the MovieReader class with data that contains blank entries,
 	 * ensuring the reader handles those cases correctly.
 	 */
 	@Test
 	public void test3() {
-		MovieReaderInterface reader = new MovieReaderDW();
+		MovieReaderInterface reader = new MovieReader();
 
 		List<MovieInterface> list = null; 
 		try {
@@ -126,12 +126,12 @@ public class DataWranglerTests {
 
 
 	/**
-	 * Tests the MovieReaderDW class with data that contains commas and quote marks in string data,
+	 * Tests the MovieReader class with data that contains commas and quote marks in string data,
 	 * making sure that commas and quotation marks do not cause breaks within data fields.
 	 */
 	@Test
 	public void test4() {
-		MovieReaderInterface reader = new MovieReaderDW();
+		MovieReaderInterface reader = new MovieReader();
 
 		List<MovieInterface> list = null; 
 		try {
@@ -164,12 +164,12 @@ public class DataWranglerTests {
 
 
 	/**
-	 * Tests the MovieReaderDW on a significantly larger dataset (>1500 lines).
+	 * Tests the MovieReader on a significantly larger dataset (>1500 lines).
 	 * Ensures the reader processes the larger file correctly.
 	 */
 	@Test
 	public void test5() {
-		MovieReaderInterface reader = new MovieReaderDW();
+		MovieReaderInterface reader = new MovieReader();
 
 		List<MovieInterface> list = null; 
 		try {
@@ -324,7 +324,7 @@ public class DataWranglerTests {
 	@Test
 	public void integrationTest1() {
 	  // set up DW stuff
-	  MovieReaderInterface reader = new MovieReaderDW();
+	  MovieReaderInterface reader = new MovieReader();
       List<MovieInterface> movieList = null; 
       try {
           movieList = reader.readMovieData("data/IntegrationDataDW.csv");
@@ -427,7 +427,7 @@ public class DataWranglerTests {
     public List<MovieInterface> getMoviesByTitle(String title) {
       ArrayList<MovieInterface> list = new ArrayList<MovieInterface>();
       if (title.equals("no match")) return list;
-      list.add(new MovieDW(0, "match", 0, "","","","",0, false));      
+      list.add(new Movie(0, "match", 0, "","","","",0, false));      
       return list;
     }
 
@@ -455,7 +455,7 @@ public class DataWranglerTests {
     public List<MovieInterface> getMoviesByPopularityRange(int year1, int year2) {
       ArrayList<MovieInterface> list = new ArrayList<MovieInterface>();
       int pop = 50;
-      list.add(new MovieDW(0, "match", 0, "","","","",pop, false));
+      list.add(new Movie(0, "match", 0, "","","","",pop, false));
       if (year1 <= pop && year2 >= pop) return list;
       return new ArrayList<MovieInterface>();
     }
