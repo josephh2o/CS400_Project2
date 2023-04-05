@@ -1,9 +1,9 @@
-import org.junit.jupiter.api.Test;
-
+import java.util.List;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This class contains JUnit 5 tests for the FrontendDeveloper class.
@@ -297,11 +297,11 @@ public class FrontendDeveloperTests {
     /**
      * This JUnit 5 test checks the functionality of the Movie class written by the Data Wrangler.
      * The following scenarios are tested:
-     * A. Check whether the getters are working properly.
+     * A. Check whether the getters for all data in a movie are working properly.
      */
     @Test
     public void testCodeReviewOfDataWrangler1() {
-        MovieInterface movie = new Movie(2012, "Skyfall", 143, "Action", "Daniel Craig",
+        Movie movie = new Movie(2012, "Skyfall", 143, "Action", "Daniel Craig",
                 "Naomie Harris", "Sam Mendes", 86, true);
         { // Scenario A
             assertEquals(2012, movie.getYear());
@@ -319,10 +319,27 @@ public class FrontendDeveloperTests {
     /**
      * This JUnit 5 test checks the functionality of the MovieReader class written by the Data Wrangler.
      * The following scenarios are tested:
-     * A.
+     * A. Check whether the readMovieData method is working properly. Check first few movies and their data.
      */
     @Test
     public void testCodeReviewOfDataWrangler2() {
-
+        MovieReader movieReader = new MovieReader();
+        { // Scenario A
+            try {
+                List<MovieInterface> movies = movieReader.readMovieData("noduplicates.csv");
+                assertFalse(movies.isEmpty()); // Check if the list is not empty
+                assertEquals(1990, movies.get(0).getYear());
+                assertEquals("High Heels", movies.get(1).getTitle());
+                assertEquals(104, movies.get(2).getRuntime());
+                assertEquals("Action", movies.get(3).getCategory());
+                assertEquals("Gere, Richard", movies.get(4).getLeadActor());
+                assertEquals("Adams, Maud", movies.get(5).getLeadActress());
+                assertEquals("Loma, José Antonio de la", movies.get(6).getDirector());
+                assertEquals(28, movies.get(7).getPopularity());
+                assertFalse(movies.get(8).wonAwards());
+            } catch (Exception e) {
+                fail("Exception thrown");
+            }
+        }
     }
 }
