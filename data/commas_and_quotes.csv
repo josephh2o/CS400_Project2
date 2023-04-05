@@ -1,0 +1,7 @@
+#skip 1 line
+#skip 2 lines
+"2001","60","The ""Quotes"" in the Middle","category","actor","actress","director","20","Yes","image"
+"2002","50","title","category","lastname, firstname","actress","director","70","No","image"
+"2003","90","other title","genre","actor","lastname, firstname ""nickname""","director","20","Yes","image"
+"2004","50","commas ""in,"" quotes","genre","actor","actress","director","20","Yes","image"
+"2005","90","""""quotes on ends""","genre","actor","actress","director","20","Yes","image"
