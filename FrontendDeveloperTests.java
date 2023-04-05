@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This class contains JUnit 5 tests for the FrontendDeveloper class.
@@ -291,5 +292,37 @@ public class FrontendDeveloperTests {
         { // Scenario F
             assertTrue(output.contains("No movies found with the popularity 101"));
         }
+    }
+
+    /**
+     * This JUnit 5 test checks the functionality of the Movie class written by the Data Wrangler.
+     * The following scenarios are tested:
+     * A. Check whether the getters are working properly.
+     */
+    @Test
+    public void testCodeReviewOfDataWrangler1() {
+        MovieInterface movie = new Movie(2012, "Skyfall", 143, "Action", "Daniel Craig",
+                "Naomie Harris", "Sam Mendes", 86, true);
+        { // Scenario A
+            assertEquals(2012, movie.getYear());
+            assertEquals("Skyfall", movie.getTitle());
+            assertEquals(143, movie.getRuntime());
+            assertEquals("Action", movie.getCategory());
+            assertEquals("Daniel Craig", movie.getLeadActor());
+            assertEquals("Naomie Harris", movie.getLeadActress());
+            assertEquals("Sam Mendes", movie.getDirector());
+            assertEquals(86, movie.getPopularity());
+            assertTrue(movie.wonAwards());
+        }
+    }
+
+    /**
+     * This JUnit 5 test checks the functionality of the MovieReader class written by the Data Wrangler.
+     * The following scenarios are tested:
+     * A.
+     */
+    @Test
+    public void testCodeReviewOfDataWrangler2() {
+
     }
 }
