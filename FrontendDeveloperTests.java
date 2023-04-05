@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This class contains JUnit 5 tests for the FrontendDeveloper class.
@@ -16,18 +16,18 @@ public class FrontendDeveloperTests {
      * B. Entering an invalid command
      */
     @Test
-    public void test1() {
-        BackendInterface backend1 = new BackendFD();
-        TextUITester test1 = new TextUITester("L\n\nT\n\nP\n\nY\n\n1\nQ\n");
-        Scanner input1 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input1, backend1);
+    public void testMenu() {
+        BackendInterface backend = new BackendFD();
+        TextUITester test = new TextUITester("L\n\nT\n\nP\n\nY\n\n1\nQ\n");
+        Scanner input = new Scanner(System.in);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
-        String output1 = test1.checkOutput();
+        String output = test.checkOutput();
         { // Scenario A
-            assumeTrue(output1.contains("Command List:"));
+            assertTrue(output.contains("Command List:"));
         }
         { // Scenario B
-            assumeTrue(output1.contains("Invalid command. Please try again."));
+            assertTrue(output.contains("Invalid command. Please try again."));
         }
     }
 
@@ -37,46 +37,47 @@ public class FrontendDeveloperTests {
      * A. Loading a file that exists
      */
     @Test
-    public void test2() {
-        BackendInterface backend2 = new BackendFD();
-        TextUITester test2 = new TextUITester("L\ntest.txt\nQ\n");
-        Scanner input2 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input2, backend2);
+    public void testLoad() {
+        BackendInterface backend = new BackendFD();
+        TextUITester test = new TextUITester("L\ntest.txt\nQ\n");
+        Scanner input = new Scanner(System.in);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
-        String output2 = test2.checkOutput();
-        assumeTrue(output2.contains("Data loaded successfully"));
+        String output = test.checkOutput();
+        { // Scenario A
+            assertTrue(output.contains("Data loaded successfully"));
+        }
     }
 
     /**
      * This JUnit 5 test checks the functionality of the searchTitle() method.
      * The following scenarios are tested:
-     * A. Searching by a single keyword
-     * B. Searching by two keywords
-     * C. Searching by a keyword containing punctuation
-     * D. Searching by a keyword that is a number
+     * A. Searching by a single word title
+     * B. Searching by a multi-word title
+     * C. Searching by a title containing punctuation
+     * D. Searching by a title that is a number
      */
     @Test
-    public void test3() {
-        BackendInterface backend3 = new BackendFD();
-        TextUITester test3 = new TextUITester("T\nalpha\nT\nbeta gamma\nT\nDon't\nT\n1\nQ\n");
-        Scanner input3 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input3, backend3);
+    public void testTitle() {
+        BackendInterface backend = new BackendFD();
+        TextUITester test = new TextUITester("L\nempty.txt\nT\nalpha\nT\nbeta gamma\nT\nDon't\nT\n1\nQ\n");
+        Scanner input = new Scanner(System.in);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
-        String output3 = test3.checkOutput();
+        String output = test.checkOutput();
         { // Scenario A
-            assumeTrue(output3.contains("Movies found with the keyword alpha"));
+            assertTrue(output.contains("Found 1 movie(s) with the title alpha"));
         }
         { // Scenario B
-            assumeTrue(output3.contains("Movies found with the keyword beta"));
-            assumeTrue(output3.contains("Movies found with the keyword gamma"));
+            assertTrue(output.contains("Found 1 movie(s) with the title beta gamma"));
         }
         { // Scenario C
-            assumeTrue(output3.contains("Movies found with the keyword Don't"));
+            assertTrue(output.contains("Found 1 movie(s) with the title Don't"));
         }
         { // Scenario D
-            assumeTrue(output3.contains("Movies found with the keyword 1"));
+            assertTrue(output.contains("Found 1 movie(s) with the title 1"));
         }
-        assumeTrue(output3.contains("aaaa"));
+        assertTrue(output.contains("aaaa"));
     }
 
     /**
@@ -89,27 +90,27 @@ public class FrontendDeveloperTests {
      * E. Searching by a range of years that is a not a valid number, such as "abc-def"
      */
     @Test
-    public void test4() {
-        BackendInterface backend4 = new BackendFD();
-        TextUITester test4 = new TextUITester("Y\n2010\nY\n2011,2012\nY\n2013-2023\nY\nabc\nY\nabc-def\nQ\n");
-        Scanner input4 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input4, backend4);
+    public void testYear() {
+        BackendInterface backend = new BackendFD();
+        TextUITester test = new TextUITester("L\nempty.txt\nY\n2010\nY\n2011,2012\nY\n2013-2023\nY\nabc\nY\nabc-def\nQ\n");
+        Scanner input = new Scanner(System.in);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
-        String output4 = test4.checkOutput();
+        String output = test.checkOutput();
         { // Scenarios A and B
-            assumeTrue(output4.contains("Movies found in 2010"));
-            assumeTrue(output4.contains("Movies found in 2011"));
-            assumeTrue(output4.contains("Movies found in 2012"));
-            assumeTrue(output4.contains("dddd (4444)"));
-            assumeTrue(output4.contains("eeee (5555)"));
+            assertTrue(output.contains("Found 2 movie(s) in 2010"));
+            assertTrue(output.contains("Found 2 movie(s) in 2011"));
+            assertTrue(output.contains("Found 2 movie(s) in 2012"));
+            assertTrue(output.contains("dddd (4444) Popularity: 444"));
+            assertTrue(output.contains("eeee (5555) Popularity: 555"));
         }
         { // Scenario C
-            assumeTrue(output4.contains("Movies found in 2013 to 2023:"));
-            assumeTrue(output4.contains("ffff (6666)"));
-            assumeTrue(output4.contains("gggg (7777)"));
+            assertTrue(output.contains("Found 2 movie(s) in 2013 to 2023"));
+            assertTrue(output.contains("ffff (6666) Popularity: 666"));
+            assertTrue(output.contains("gggg (7777) Popularity: 777"));
         }
         { // Scenario D and E
-            assumeTrue(output4.contains("Invalid year. Please try again."));
+            assertTrue(output.contains("Invalid year. Please try again."));
         }
     }
 
@@ -123,27 +124,27 @@ public class FrontendDeveloperTests {
      * E. Searching by a range of years that is a not a valid number, such as "abc-def"
      */
     @Test
-    public void test5() {
-        BackendInterface backend5 = new BackendFD();
-        TextUITester test5 = new TextUITester("P\n1\nP\n2,3\nP\n4-5\nP\nabc\nP\nabc-def\nQ\n");
-        Scanner input5 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input5, backend5);
+    public void testPopularity() {
+        BackendInterface backend = new BackendFD();
+        TextUITester test = new TextUITester("L\nempty.txt\nP\n1\nP\n2,3\nP\n4-5\nP\nabc\nP\nabc-def\nQ\n");
+        Scanner input = new Scanner(System.in);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
-        String output5 = test5.checkOutput();
+        String output = test.checkOutput();
         { // Scenarios A and B
-            assumeTrue(output5.contains("Movies found with the popularity 1"));
-            assumeTrue(output5.contains("Movies found with the popularity 2"));
-            assumeTrue(output5.contains("Movies found with the popularity 3"));
-            assumeTrue(output5.contains("bbbb (Rating: 222)"));
-            assumeTrue(output5.contains("cccc (Rating: 333)"));
+            assertTrue(output.contains("Found 2 movie(s) with the popularity 1"));
+            assertTrue(output.contains("Found 2 movie(s) with the popularity 2"));
+            assertTrue(output.contains("Found 2 movie(s) with the popularity 3"));
+            assertTrue(output.contains("bbbb (2222) Popularity: 222"));
+            assertTrue(output.contains("cccc (3333) Popularity: 333"));
         }
         { // Scenario C
-            assumeTrue(output5.contains("Movies found with the popularity 4 to 5"));
-            assumeTrue(output5.contains("hhhh (Rating: 888)"));
-            assumeTrue(output5.contains("iiii (Rating: 999)"));
+            assertTrue(output.contains("Found 2 movie(s) with the popularity 4 to 5"));
+            assertTrue(output.contains("hhhh (8888) Popularity: 888"));
+            assertTrue(output.contains("iiii (9999) Popularity: 999"));
         }
         { // Scenario D and E
-            assumeTrue(output5.contains("Invalid popularity. Please try again."));
+            assertTrue(output.contains("Invalid popularity. Please try again."));
         }
     }
 
@@ -156,26 +157,26 @@ public class FrontendDeveloperTests {
      * D. Searching by multiple popularities
      */
     @Test
-    public void test6() {
-        BackendInterface backend6 = new BackendFD();
-        TextUITester test6 = new TextUITester("L\ntest.txt\nT\nJames Bond\nY\n2021-2023\nP\n9,10\nQ\n");
-        Scanner input6 = new Scanner(System.in);
-        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input6, backend6);
+    public void testGeneral() {
+        BackendInterface backend = new BackendFD();
+        TextUITester test = new TextUITester("L\nempty.txt\nT\nJames Bond\nY\n2021-2023\nP\n9,10\nQ\n");
+        Scanner input = new Scanner(System.in);
+        MovieSearchAppInterface movieSearchApp = new MovieSearchApp(input, backend);
         movieSearchApp.runCommandLoop();
-        String output = test6.checkOutput();
+        String output = test.checkOutput();
+        System.out.println(output);
         { // Scenario A
-            assumeTrue(output.contains("Data loaded successfully"));
+            assertTrue(output.contains("Data loaded successfully"));
         }
         { // Scenario B
-            assumeTrue(output.contains("Movies found with the keyword James"));
-            assumeTrue(output.contains("Movies found with the keyword Bond"));
+            assertTrue(output.contains("Found 1 movie(s) with the title James Bond:"));
         }
         { // Scenario C
-            assumeTrue(output.contains("Movies found in 2021 to 2023:"));
+            assertTrue(output.contains("Found 2 movie(s) in 2021 to 2023:"));
         }
         { // Scenario D
-            assumeTrue(output.contains("Movies found with the popularity 9"));
-            assumeTrue(output.contains("Movies found with the popularity 10"));
+            assertTrue(output.contains("Found 2 movie(s) with the popularity 9"));
+            assertTrue(output.contains("Found 2 movie(s) with the popularity 10"));
         }
     }
 }
